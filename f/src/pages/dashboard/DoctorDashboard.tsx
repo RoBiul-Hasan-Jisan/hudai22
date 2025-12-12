@@ -4,14 +4,14 @@ import {
   Stethoscope, 
   Calendar, 
   MessageSquare, 
-  FileText, 
+   
   Users, 
   Video, 
   Clock, 
   AlertCircle, 
   Home,
-  Pill,
-  ClipboardList,
+ 
+  
   FileSignature
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
