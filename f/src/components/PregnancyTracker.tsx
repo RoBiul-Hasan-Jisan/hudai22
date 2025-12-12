@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { 
   Calendar, 
   Baby, 
@@ -26,10 +26,7 @@ import {
   Line,
   LineChart,
   BarChart,
-  Bar,
-  Legend,
-  Cell
-} from 'recharts';
+  Bar} from 'recharts';
 import { weekDetails, trimesterData, getWeekData, WeekDetail } from '@/data/pregnancyData';
 import { realGrowthData } from '@/data/realGrowthData';
 
