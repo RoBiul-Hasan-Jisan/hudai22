@@ -70,7 +70,8 @@ const Header = () => {
     
     switch(userType) {
       case 'patient':
-        isValid = patientPhone && patientPhone.length === 11 && patientPassword;
+        // FIXED: Use Boolean() to ensure boolean return
+        isValid = Boolean(patientPhone && patientPhone.length === 11 && patientPassword);
         if (isValid) {
           // Store user data
           localStorage.setItem('isAuthenticated', 'true');
@@ -91,7 +92,8 @@ const Header = () => {
         break;
 
       case 'nurse':
-        isValid = nurseId && nurseId.startsWith('HWC-') && nursePassword;
+        // FIXED: Use Boolean() to ensure boolean return
+        isValid = Boolean(nurseId && nurseId.startsWith('HWC-') && nursePassword);
         if (isValid) {
           localStorage.setItem('isAuthenticated', 'true');
           localStorage.setItem('userRole', 'nurse');
@@ -110,7 +112,8 @@ const Header = () => {
         break;
 
       case 'doctor':
-        isValid = doctorBmdc && doctorBmdc.startsWith('BMDC-') && doctorPassword;
+        // FIXED: Use Boolean() to ensure boolean return
+        isValid = Boolean(doctorBmdc && doctorBmdc.startsWith('BMDC-') && doctorPassword);
         if (isValid) {
           localStorage.setItem('isAuthenticated', 'true');
           localStorage.setItem('userRole', 'doctor');
@@ -135,9 +138,10 @@ const Header = () => {
     
     switch(userType) {
       case 'patient':
-        isValid = fullName && regPatientPhone && regPatientPhone.length === 11 && 
+        // FIXED: Use Boolean() to ensure boolean return
+        isValid = Boolean(fullName && regPatientPhone && regPatientPhone.length === 11 && 
                   regPatientPassword && confirmPassword && regPatientPassword === confirmPassword &&
-                  pregnancyMonth && parseInt(pregnancyMonth) >= 1 && parseInt(pregnancyMonth) <= 9;
+                  pregnancyMonth && parseInt(pregnancyMonth) >= 1 && parseInt(pregnancyMonth) <= 9);
         
         if (isValid) {
           localStorage.setItem('isAuthenticated', 'true');
@@ -165,9 +169,10 @@ const Header = () => {
         break;
 
       case 'nurse':
-        isValid = fullName && nurseId && nurseId.startsWith('HWC-') && 
+        // FIXED: Use Boolean() to ensure boolean return
+        isValid = Boolean(fullName && nurseId && nurseId.startsWith('HWC-') && 
                   nursePassword && confirmPassword && nursePassword === confirmPassword &&
-                  facilityName;
+                  facilityName);
         
         if (isValid) {
           localStorage.setItem('isAuthenticated', 'true');
@@ -194,9 +199,10 @@ const Header = () => {
         break;
 
       case 'doctor':
-        isValid = fullName && doctorBmdc && doctorBmdc.startsWith('BMDC-') && 
+        // FIXED: Use Boolean() to ensure boolean return
+        isValid = Boolean(fullName && doctorBmdc && doctorBmdc.startsWith('BMDC-') && 
                   doctorPassword && confirmPassword && doctorPassword === confirmPassword &&
-                  hospitalName;
+                  hospitalName);
         
         if (isValid) {
           localStorage.setItem('isAuthenticated', 'true');
@@ -256,6 +262,42 @@ const Header = () => {
     setFacilityName('');
     setHospitalName('');
   };
+
+  // Calculate button disabled states - FIXED VERSION
+  const isLoginDisabled = (): boolean => {
+    switch(userType) {
+      case 'patient':
+        return !Boolean(patientPhone && patientPhone.length === 11 && patientPassword);
+      case 'nurse':
+        return !Boolean(nurseId && nurseId.startsWith('HWC-') && nursePassword);
+      case 'doctor':
+        return !Boolean(doctorBmdc && doctorBmdc.startsWith('BMDC-') && doctorPassword);
+      default:
+        return true;
+    }
+  };
+
+  const isRegisterDisabled = (): boolean => {
+    switch(userType) {
+      case 'patient':
+        return !Boolean(fullName && regPatientPhone && regPatientPhone.length === 11 && 
+                regPatientPassword && confirmPassword && regPatientPassword === confirmPassword &&
+                pregnancyMonth && parseInt(pregnancyMonth) >= 1 && parseInt(pregnancyMonth) <= 9);
+      case 'nurse':
+        return !Boolean(fullName && nurseId && nurseId.startsWith('HWC-') && 
+                nursePassword && confirmPassword && nursePassword === confirmPassword &&
+                facilityName);
+      case 'doctor':
+        return !Boolean(fullName && doctorBmdc && doctorBmdc.startsWith('BMDC-') && 
+                doctorPassword && confirmPassword && doctorPassword === confirmPassword &&
+                hospitalName);
+      default:
+        return true;
+    }
+  };
+
+  // Remove this line if not used
+  // const isSubmitDisabled = authMode === 'login' ? isLoginDisabled() : isRegisterDisabled();
 
   return (
     <>
@@ -617,7 +659,8 @@ const Header = () => {
 
                 <button
                   onClick={handleLogin}
-                  className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-all ${
+                  disabled={isLoginDisabled()}
+                  className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                     userType === 'patient'
                       ? 'bg-purple-600 hover:bg-purple-700'
                       : userType === 'nurse'
@@ -820,7 +863,8 @@ const Header = () => {
 
                 <button
                   onClick={handleRegister}
-                  className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-all ${
+                  disabled={isRegisterDisabled()}
+                  className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                     userType === 'patient'
                       ? 'bg-purple-600 hover:bg-purple-700'
                       : userType === 'nurse'
