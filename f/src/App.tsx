@@ -1,35 +1,51 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from '@/pages/Home';
-import "@/styles/globals.css";
-
-// Add custom styles for smooth scrolling
-const addCustomStyles = () => {
-  const style = document.createElement('style');
-  style.textContent = `
-    .scroll-mt-24 {
-      scroll-margin-top: 6rem;
-    }
-    @keyframes spin-slow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    .animate-spin-slow {
-      animation: spin-slow 20s linear infinite;
-    }
-  `;
-  document.head.appendChild(style);
-};
+// App.tsx
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './pages/Home';
+import PatientDashboard from './pages/dashboard/PatientDashboard';
+import NurseDashboard from './pages/dashboard/NurseDashboard';
+import DoctorDashboard from './pages/dashboard/DoctorDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-  // Add custom styles on mount
-  addCustomStyles();
-
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="min-h-screen bg-gray-50">
+        <Header />
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Home />} />
-          {/* Add more routes as needed */}
+          
+          {/* Protected Dashboard Routes */}
+          <Route 
+            path="/patient/dashboard" 
+            element={
+              <ProtectedRoute allowedRoles={['patient']}>
+                <PatientDashboard />
+              </ProtectedRoute>
+            } 
+          />
+          
+          <Route 
+            path="/nurse/dashboard" 
+            element={
+              <ProtectedRoute allowedRoles={['nurse']}>
+                <NurseDashboard />
+              </ProtectedRoute>
+            } 
+          />
+          
+          <Route 
+            path="/doctor/dashboard" 
+            element={
+              <ProtectedRoute allowedRoles={['doctor']}>
+                <DoctorDashboard />
+              </ProtectedRoute>
+            } 
+          />
+          
+          {/* Catch all route */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
     </Router>
