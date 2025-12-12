@@ -21,7 +21,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Not yet conceived",
     babyLength: "0 cm",
     weight: "0 g",
-    image: "/public/images/week1.jpg",
+    image: "/images/week1.jpg",
     ruralTip: "Track menstrual cycle for pregnancy planning",
     milestones: [
       "Body preparing for ovulation",
@@ -46,7 +46,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Not yet conceived",
     babyLength: "0 cm",
     weight: "0 g",
-    image: "/public/images/week2.jpg",
+    image: "/images/week2.jpg",
     ruralTip: "Recognize fertile signs for conception",
     milestones: [
       "Ovulation occurs",
@@ -71,7 +71,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Pinpoint",
     babyLength: "0.1-0.2 mm",
     weight: "Microscopic",
-    image: "/public/images/week3.jpg",
+    image: "/images/week3.jpg",
     ruralTip: "Early pregnancy signs may appear",
     milestones: [
       "Fertilization occurs",
@@ -97,7 +97,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Poppy Seed",
     babyLength: "0.1 cm",
     weight: "Less than 1 g",
-    image: "/public/images/week4.jpg",
+    image: "/images/week4.jpg",
     ruralTip: "Visit local health worker for confirmation",
     milestones: [
       "Implantation complete",
@@ -123,7 +123,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Apple Seed",
     babyLength: "0.13 cm",
     weight: "Less than 1 g",
-    image: "/public/images/week5.jpg",
+    image: "/images/week5.jpg",
     ruralTip: "Morning sickness remedies using local herbs (ginger tea)",
     milestones: [
       "Heart begins to beat",
@@ -149,7 +149,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Sweet Pea",
     babyLength: "0.25 cm",
     weight: "Less than 1 g",
-    image: "/public/images/week6.jpg",
+    image: "/images/week6.jpg",
     ruralTip: "Use traditional remedies for nausea",
     milestones: [
       "Brain developing rapidly",
@@ -175,7 +175,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Blueberry",
     babyLength: "0.5 cm",
     weight: "Less than 1 g",
-    image: "/public/images/week7.jpg",
+    image: "/images/week7.jpg",
     ruralTip: "Include local protein sources in diet",
     milestones: [
       "Face taking shape",
@@ -201,7 +201,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Raspberry",
     babyLength: "1.6 cm",
     weight: "1 g",
-    image: "/public/images/week8.jpg",
+    image: "/images/week8.jpg",
     ruralTip: "Attend village health camp for checkup",
     milestones: [
       "All major organs forming",
@@ -227,7 +227,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Cherry",
     babyLength: "2.3 cm",
     weight: "2 g",
-    image: "/public/images/week9.jpg",
+    image: "/images/week9.jpg",
     ruralTip: "Traditional belly oil massage for skin",
     milestones: [
       "Now called a fetus",
@@ -253,7 +253,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Strawberry",
     babyLength: "3.1 cm",
     weight: "4 g",
-    image: "/public/images/week10.jpg",
+    image: "/images/week10.jpg",
     ruralTip: "Prepare homemade healthy snacks",
     milestones: [
       "Organ development complete",
@@ -279,7 +279,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Fig",
     babyLength: "4.1 cm",
     weight: "7 g",
-    image: "/public/images/week11.jpg",
+    image: "/images/week11.jpg",
     ruralTip: "Use local herbs for digestion",
     milestones: [
       "Diaphragm developing",
@@ -305,7 +305,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Plum",
     babyLength: "5.4 cm",
     weight: "14 g",
-    image: "/public/images/week12.jpg",
+    image: "/images/week12.jpg",
     ruralTip: "Register at nearest health center",
     milestones: [
       "Reflexes developing",
@@ -331,7 +331,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Lemon",
     babyLength: "7.4 cm",
     weight: "23 g",
-    image: "/public/images/week13.jpg",
+    image: "/images/week13.jpg",
     ruralTip: "Traditional pregnancy diet recipes",
     milestones: [
       "Vocal cords developing",
@@ -357,7 +357,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Peach",
     babyLength: "8.7 cm",
     weight: "43 g",
-    image: "/public/images/week14.jpg",
+    image: "/images/week14.jpg",
     ruralTip: "Local calcium sources (sesame seeds, greens)",
     milestones: [
       "Can make facial expressions",
@@ -383,7 +383,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Apple",
     babyLength: "10.1 cm",
     weight: "70 g",
-    image: "/public/images/week15.jpg",
+    image: "/images/week15.jpg",
     ruralTip: "Traditional sitting positions for comfort",
     milestones: [
       "Can sense light",
@@ -409,7 +409,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Avocado",
     babyLength: "11.6 cm",
     weight: "100 g",
-    image: "/public/images/week16.jpg",
+    image: "/images/week16.jpg",
     ruralTip: "Learn about government pregnancy schemes",
     milestones: [
       "Baby starts moving",
@@ -435,7 +435,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Pear",
     babyLength: "13 cm",
     weight: "140 g",
-    image: "/public/images/week17.jpg",
+    image: "/images/week17.jpg",
     ruralTip: "Traditional pregnancy massage techniques",
     milestones: [
       "Brown fat developing",
@@ -461,7 +461,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Sweet Potato",
     babyLength: "14.2 cm",
     weight: "190 g",
-    image: "/public/images/week18.jpg",
+    image: "/images/week18.jpg",
     ruralTip: "Sing traditional lullabies to baby",
     milestones: [
       "Ears in final position",
@@ -487,7 +487,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Mango",
     babyLength: "15.3 cm",
     weight: "240 g",
-    image: "/public/images/week19.jpg",
+    image: "/images/week19.jpg",
     ruralTip: "Local hair care traditions",
     milestones: [
       "Five senses developing",
@@ -513,7 +513,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Banana",
     babyLength: "25.6 cm",
     weight: "300 g",
-    image: "/public/images/week20.jpg",
+    image: "/images/week20.jpg",
     ruralTip: "Prepare for ultrasound at Primary Health Center",
     milestones: [
       "Gender visible on ultrasound",
@@ -539,7 +539,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Carrot",
     babyLength: "26.7 cm",
     weight: "360 g",
-    image: "/public/images/week21.jpg",
+    image: "/images/week21.jpg",
     ruralTip: "Traditional recipes for gestational diabetes prevention",
     milestones: [
       "Taste buds fully formed",
@@ -565,7 +565,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Coconut",
     babyLength: "27.8 cm",
     weight: "430 g",
-    image: "/public/images/week22.jpg",
+    image: "/images/week22.jpg",
     ruralTip: "Handmade baby clothing preparations",
     milestones: [
       "Sense of touch developing",
@@ -591,7 +591,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Grapefruit",
     babyLength: "28.9 cm",
     weight: "500 g",
-    image: "/public/images/week23.jpg",
+    image: "/images/week23.jpg",
     ruralTip: "Local music exposure for baby",
     milestones: [
       "Can hear outside sounds clearly",
@@ -617,7 +617,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Corn",
     babyLength: "30 cm",
     weight: "600 g",
-    image: "/public/images/week24.jpg",
+    image: "/images/week24.jpg",
     ruralTip: "Prepare emergency transport plan",
     milestones: [
       "Lungs developing surfactant",
@@ -643,7 +643,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Rutabaga",
     babyLength: "34.6 cm",
     weight: "660 g",
-    image: "/public/images/week25.jpg",
+    image: "/images/week25.jpg",
     ruralTip: "Traditional handcrafts for baby",
     milestones: [
       "Hand coordination improves",
@@ -669,7 +669,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Green Onion",
     babyLength: "35.6 cm",
     weight: "760 g",
-    image: "/public/images/week26.jpg",
+    image: "/images/week26.jpg",
     ruralTip: "Local eye care traditions",
     milestones: [
       "Eyes begin to open",
@@ -695,7 +695,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Cauliflower",
     babyLength: "36.6 cm",
     weight: "875 g",
-    image: "/public/images/week27.jpg",
+    image: "/images/week27.jpg",
     ruralTip: "Start preparing delivery supplies",
     milestones: [
       "Brain activity increases",
@@ -721,7 +721,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Eggplant",
     babyLength: "37.6 cm",
     weight: "1 kg",
-    image: "/public/images/week28.jpg",
+    image: "/images/week28.jpg",
     ruralTip: "Plan delivery location with family",
     milestones: [
       "Eyes can open and close",
@@ -747,7 +747,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Butternut Squash",
     babyLength: "38.6 cm",
     weight: "1.2 kg",
-    image: "/public/images/week29.jpg",
+    image: "/images/week29.jpg",
     ruralTip: "Traditional exercises for labor",
     milestones: [
       "Muscles and lungs maturing",
@@ -773,7 +773,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Cabbage",
     babyLength: "39.9 cm",
     weight: "1.3 kg",
-    image: "/public/images/week30.jpg",
+    image: "/images/week30.jpg",
     ruralTip: "Local nutrient-rich recipes for third trimester",
     milestones: [
       "Can regulate body temperature",
@@ -799,7 +799,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Coconut",
     babyLength: "41.1 cm",
     weight: "1.5 kg",
-    image: "/public/images/week31.jpg",
+    image: "/images/week31.jpg",
     ruralTip: "Traditional brain-boosting foods",
     milestones: [
       "Brain developing rapidly",
@@ -825,7 +825,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Squash",
     babyLength: "42.4 cm",
     weight: "1.7 kg",
-    image: "/public/images/week32.jpg",
+    image: "/images/week32.jpg",
     ruralTip: "Arrange traditional birth attendant",
     milestones: [
       "Bones fully formed but soft",
@@ -851,7 +851,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Pineapple",
     babyLength: "43.7 cm",
     weight: "1.9 kg",
-    image: "/public/images/week33.jpg",
+    image: "/images/week33.jpg",
     ruralTip: "Traditional immunity-boosting foods",
     milestones: [
       "Immune system developing antibodies",
@@ -877,7 +877,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Cantaloupe",
     babyLength: "45 cm",
     weight: "2.1 kg",
-    image: "/public/images/week34.jpg",
+    image: "/images/week34.jpg",
     ruralTip: "Breathing exercises for labor",
     milestones: [
       "Lungs nearly mature",
@@ -903,7 +903,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Honeydew Melon",
     babyLength: "46.2 cm",
     weight: "2.4 kg",
-    image: "/public/images/week35.jpg",
+    image: "/images/week35.jpg",
     ruralTip: "Traditional kidney-cleansing herbs (after consulting doctor)",
     milestones: [
       "Kidneys fully developed",
@@ -929,7 +929,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Pumpkin",
     babyLength: "47.4 cm",
     weight: "2.6 kg",
-    image: "/public/images/week36.jpg",
+    image: "/images/week36.jpg",
     ruralTip: "Keep emergency numbers and transport ready",
     milestones: [
       "Baby drops into pelvis",
@@ -955,7 +955,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Winter Melon",
     babyLength: "48.6 cm",
     weight: "2.9 kg",
-    image: "/public/images/week37.jpg",
+    image: "/images/week37.jpg",
     ruralTip: "Traditional labor-inducing foods (with caution)",
     milestones: [
       "Considered early term",
@@ -981,7 +981,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Pumpkin",
     babyLength: "49.8 cm",
     weight: "3.1 kg",
-    image: "/public/images/week38.jpg",
+    image: "/images/week38.jpg",
     ruralTip: "Traditional postpartum preparation",
     milestones: [
       "Brain still developing",
@@ -1007,7 +1007,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Mini Watermelon",
     babyLength: "50.7 cm",
     weight: "3.3 kg",
-    image: "/public/images/week39.jpg",
+    image: "/images/week39.jpg",
     ruralTip: "Stay near health facility in remote areas",
     milestones: [
       "Physical development complete",
@@ -1033,7 +1033,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Watermelon",
     babyLength: "51.2 cm",
     weight: "3.4 kg",
-    image: "/public/images/week40.jpg",
+    image: "/images/week40.jpg",
     ruralTip: "Traditional birth welcoming rituals",
     milestones: [
       "Ready to meet the world!",
@@ -1059,7 +1059,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Small Pumpkin",
     babyLength: "51.7 cm",
     weight: "3.6 kg",
-    image: "/public/images/week41.jpg",
+    image: "/images/week41.jpg",
     ruralTip: "Consult healthcare provider immediately",
     milestones: [
       "Still gaining weight",
@@ -1085,7 +1085,7 @@ export const weekDetails: WeekDetails = {
     babySize: "Large Pumpkin",
     babyLength: "52 cm",
     weight: "3.7 kg",
-    image: "/public/images/week42.jpg",
+    image: "/images/week42.jpg",
     ruralTip: "Urgent medical consultation needed",
     milestones: [
       "Post-term pregnancy",
