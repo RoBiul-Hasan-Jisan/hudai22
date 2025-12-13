@@ -1,8 +1,7 @@
 import React from 'react';
 import { X, User, Users, Stethoscope } from 'lucide-react';
 import { UserType, AuthMode } from './types';
-import { AUTH_ERRORS } from './constants';
-import { validateLogin, validateRegister, getLoginButtonColor, getUserData } from './utils';
+import { validateLogin, validateRegister, getLoginButtonColor  } from './utils';
 
 interface AuthModalProps {
   showAuthModal: boolean;

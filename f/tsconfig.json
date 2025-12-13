@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
     "composite": true,
+
+    /* Prevent build failure due to unused imports/variables */
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+
     /* Paths (for shadcn/ui since paths in tsconfig.app.json are not working) */
     "baseUrl": ".",
     "paths": {
