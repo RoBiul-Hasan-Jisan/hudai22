@@ -12,9 +12,7 @@ import {
   Ruler,
   Weight,
   Activity,
-  Smartphone,
-  Tablet,
-  Monitor
+  
 } from 'lucide-react';
 import * as Accordion from '@radix-ui/react-accordion';
 import {
@@ -26,7 +24,8 @@ import {
   Line,
   LineChart,
   BarChart,
-  Bar} from 'recharts';
+  Bar
+} from 'recharts';
 import { weekDetails, trimesterData, getWeekData, WeekDetail } from '@/data/pregnancyData';
 import { realGrowthData } from '@/data/realGrowthData';
 
@@ -37,30 +36,12 @@ interface ChartDataPoint {
   heartRate: number;
 }
 
-interface AccordionState {
-  milestones: boolean;
-  symptoms: boolean;
-  tips: boolean;
-  growth: boolean;
-}
 
-interface DeviceView {
-  type: 'mobile' | 'tablet' | 'desktop';
-  icon: React.ReactNode;
-  label: string;
-}
 
 const PregnancyTracker = () => {
   const [selectedWeek, setSelectedWeek] = useState<number>(12);
-  const [isAccordionOpen, setIsAccordionOpen] = useState<AccordionState>({
-    milestones: false,
-    symptoms: false,
-    tips: false,
-    growth: false
-  });
-  
   const [activeTab, setActiveTab] = useState<'overview' | 'growth' | 'timeline'>('overview');
-  const [deviceView, setDeviceView] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+  const [deviceView] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   
   // Prepare real growth data starting from week 4
   const growthData: ChartDataPoint[] = realGrowthData.map(data => ({
@@ -73,20 +54,8 @@ const PregnancyTracker = () => {
   // Filter weeks for display (4-40)
   const displayWeeks = Array.from({ length: 37 }, (_, i) => i + 4); // Weeks 4-40
 
-  // Device views for responsive preview
-  const deviceViews: DeviceView[] = [
-    { type: 'mobile', icon: <Smartphone className="w-4 h-4" />, label: 'Mobile' },
-    { type: 'tablet', icon: <Tablet className="w-4 h-4" />, label: 'Tablet' },
-    { type: 'desktop', icon: <Monitor className="w-4 h-4" />, label: 'Desktop' },
-  ];
-
-  // Handle accordion state changes
-  const handleAccordionChange = (value: string) => {
-    setIsAccordionOpen(prev => ({
-      ...prev,
-      [value]: !prev[value as keyof AccordionState]
-    }));
-  };
+  // Device views for responsive preview - REMOVED UNNECESSARY LABELS
+  
 
   // Get current week details
   const currentWeekDetails: WeekDetail = getWeekData(selectedWeek) || weekDetails[12];
@@ -95,14 +64,51 @@ const PregnancyTracker = () => {
   // Get growth data for current week
   const currentGrowthData = growthData.find(data => data.week === selectedWeek);
   
-  // Calculate trimester
+  // Calculate trimester with proper colors
   const getTrimester = (week: number) => {
-    if (week <= 13) return { name: 'First', color: 'bg-purple-500', textColor: 'text-purple-600' };
-    if (week <= 27) return { name: 'Second', color: 'bg-pink-500', textColor: 'text-pink-600' };
-    return { name: 'Third', color: 'bg-blue-500', textColor: 'text-blue-600' };
+    if (week <= 13) return { 
+      name: 'First', 
+      bgColor: 'bg-purple-500',
+      lightBgColor: 'bg-purple-100',
+      textColor: 'text-purple-600',
+      fromColor: 'from-purple-500',
+      toColor: 'to-pink-500'
+    };
+    if (week <= 27) return { 
+      name: 'Second', 
+      bgColor: 'bg-pink-500',
+      lightBgColor: 'bg-pink-100',
+      textColor: 'text-pink-600',
+      fromColor: 'from-pink-500',
+      toColor: 'to-rose-500'
+    };
+    return { 
+      name: 'Third', 
+      bgColor: 'bg-blue-500',
+      lightBgColor: 'bg-blue-100',
+      textColor: 'text-blue-600',
+      fromColor: 'from-blue-500',
+      toColor: 'to-cyan-500'
+    };
   };
 
   const currentTrimester = getTrimester(selectedWeek);
+
+  // Helper function to get color classes safely
+  const getColorClass = (color: string, type: 'bg' | 'text' | 'border' = 'bg') => {
+    const colorMap: Record<string, string> = {
+      'purple-bg': 'bg-purple-100',
+      'purple-text': 'text-purple-600',
+      'purple-border': 'border-purple-200',
+      'blue-bg': 'bg-blue-100',
+      'blue-text': 'text-blue-600',
+      'blue-border': 'border-blue-200',
+      'green-bg': 'bg-green-100',
+      'green-text': 'text-green-600',
+      'green-border': 'border-green-200',
+    };
+    return colorMap[`${color}-${type}`] || '';
+  };
 
   return (
     <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen p-4 md:p-6">
@@ -120,45 +126,24 @@ const PregnancyTracker = () => {
                   <p className="text-gray-600 mt-1">Professional tracking with real medical data</p>
                 </div>
               </div>
+
             </div>
             
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              {/* Device Preview */}
-              <div className="bg-gray-100 rounded-lg p-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600 font-medium">View:</span>
-                  <div className="flex gap-1">
-                    {deviceViews.map((device) => (
-                      <button
-                        key={device.type}
-                        onClick={() => setDeviceView(device.type)}
-                        className={`p-2 rounded-md transition-all ${
-                          deviceView === device.type 
-                            ? 'bg-white shadow-md' 
-                            : 'hover:bg-gray-200'
-                        }`}
-                      >
-                        <div className="flex items-center gap-1">
-                          {device.icon}
-                          <span className="text-xs hidden sm:inline">{device.label}</span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              {/* SIMPLIFIED Device Preview - Cleaner design */}
+            
               
               {/* Current Week Display */}
               <div className="bg-gradient-to-r from-purple-100 to-pink-100 px-4 py-3 rounded-xl border border-purple-200">
                 <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg ${currentTrimester.color} bg-opacity-10`}>
+                  <div className={`p-2 rounded-lg ${currentTrimester.bgColor} bg-opacity-10`}>
                     <Baby className={`w-5 h-5 ${currentTrimester.textColor}`} />
                   </div>
                   <div>
                     <div className="text-sm text-gray-600">Current Week</div>
                     <div className="flex items-center gap-2">
                       <span className="text-2xl font-bold text-gray-900">Week {selectedWeek}</span>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${currentTrimester.color} text-white`}>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${currentTrimester.bgColor} text-white`}>
                         {currentTrimester.name} Trimester
                       </span>
                     </div>
@@ -183,40 +168,42 @@ const PregnancyTracker = () => {
           }`}>
             <div className="bg-white rounded-2xl shadow-xl p-6">
               {/* Navigation Tabs */}
-              <div className="flex border-b border-gray-200 mb-6">
-                {['overview', 'growth', 'timeline'].map((tab) => (
+              <div className="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                {[
+                  { key: 'overview', label: 'Overview' },
+                  { key: 'growth', label: 'Growth Charts' },
+                  { key: 'timeline', label: 'Timeline' }
+                ].map((tab) => (
                   <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab as typeof activeTab)}
-                    className={`px-4 py-3 font-medium capitalize transition-all ${
-                      activeTab === tab
+                    key={tab.key}
+                    onClick={() => setActiveTab(tab.key as typeof activeTab)}
+                    className={`px-4 py-3 font-medium transition-all whitespace-nowrap ${
+                      activeTab === tab.key
                         ? 'border-b-2 border-purple-600 text-purple-600'
                         : 'text-gray-500 hover:text-gray-700'
                     }`}
                   >
-                    {tab === 'overview' && 'Overview'}
-                    {tab === 'growth' && 'Growth Charts'}
-                    {tab === 'timeline' && 'Timeline'}
+                    {tab.label}
                   </button>
                 ))}
               </div>
 
               {/* Week Selection */}
               <div className="mb-8">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
                   <h3 className="font-semibold text-gray-900">Select Week</h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <div className="flex items-center gap-4 text-sm text-gray-600">
                     <div className="flex items-center gap-1">
                       <div className="w-3 h-3 rounded-full bg-purple-400"></div>
-                      <span>Trimester 1</span>
+                      <span className="hidden sm:inline">Trimester 1</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <div className="w-3 h-3 rounded-full bg-pink-400"></div>
-                      <span>Trimester 2</span>
+                      <span className="hidden sm:inline">Trimester 2</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <div className="w-3 h-3 rounded-full bg-blue-400"></div>
-                      <span>Trimester 3</span>
+                      <span className="hidden sm:inline">Trimester 3</span>
                     </div>
                   </div>
                 </div>
@@ -232,10 +219,11 @@ const PregnancyTracker = () => {
                         className={`
                           aspect-square flex flex-col items-center justify-center rounded-xl transition-all duration-300
                           ${selectedWeek === week
-                            ? 'bg-gradient-to-br from-purple-500 to-pink-500 text-white shadow-lg transform scale-105'
+                            ? `bg-gradient-to-br ${trimester.fromColor} ${trimester.toColor} text-white shadow-lg transform scale-105`
                             : 'bg-gray-50 hover:bg-gray-100 text-gray-700'
                           }
                         `}
+                        aria-label={`Select week ${week}`}
                       >
                         <span className="text-lg font-bold">{week}</span>
                         <span className={`text-xs mt-1 ${
@@ -249,11 +237,11 @@ const PregnancyTracker = () => {
                 </div>
               </div>
 
-              {/* Charts */}
+              {/* Charts - Only show when growth tab is active */}
               {activeTab === 'growth' && (
                 <div className="space-y-8">
                   {/* Length Chart */}
-                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4">
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-100">
                     <div className="flex items-center gap-2 mb-4">
                       <Ruler className="w-5 h-5 text-purple-600" />
                       <h4 className="font-semibold text-gray-900">Baby Length Growth</h4>
@@ -290,7 +278,7 @@ const PregnancyTracker = () => {
                   </div>
 
                   {/* Weight Chart */}
-                  <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-4">
+                  <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-4 border border-blue-100">
                     <div className="flex items-center gap-2 mb-4">
                       <Weight className="w-5 h-5 text-blue-600" />
                       <h4 className="font-semibold text-gray-900">Weight Progression</h4>
@@ -317,7 +305,7 @@ const PregnancyTracker = () => {
                   </div>
 
                   {/* Heart Rate Chart */}
-                  <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-4">
+                  <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-4 border border-red-100">
                     <div className="flex items-center gap-2 mb-4">
                       <Activity className="w-5 h-5 text-red-600" />
                       <h4 className="font-semibold text-gray-900">Heart Rate Monitoring</h4>
@@ -347,39 +335,43 @@ const PregnancyTracker = () => {
                   </div>
                 </div>
               )}
+
+              {/* Timeline View */}
+              {activeTab === 'timeline' && (
+                <div className="text-center py-12">
+                  <div className="text-gray-500 mb-4">Timeline View Coming Soon</div>
+                  <p className="text-gray-600">Interactive timeline with major milestones and events</p>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Right Panel - Week Details */}
-          <div className={`${
-            deviceView === 'mobile' ? 'col-span-1' :
-            deviceView === 'tablet' ? 'col-span-1 lg:col-span-1' :
-            'col-span-1 lg:col-span-1'
-          }`}>
+          <div className="col-span-1">
             <div className="sticky top-6">
               {/* Week Card */}
-              <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
                 {/* Week Header */}
-                <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6">
+                <div className={`bg-gradient-to-r ${currentTrimester.fromColor} ${currentTrimester.toColor} p-6`}>
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <h2 className="text-2xl font-bold text-white">{currentWeekDetails.title}</h2>
-                      <p className="text-purple-100 mt-1">Trimester: {currentTrimester.name}</p>
+                      <p className="text-white/90 mt-1">Trimester: {currentTrimester.name}</p>
                     </div>
-                    <div className="p-3 bg-white bg-opacity-20 rounded-xl">
+                    <div className="p-3 bg-white/20 rounded-xl">
                       <Baby className="w-8 h-8 text-white" />
                     </div>
                   </div>
                   
                   {/* Baby Image */}
-                  <div className="bg-white bg-opacity-20 rounded-xl p-4 backdrop-blur-sm">
-                    <div className="flex items-center justify-between mb-3">
+                  <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
                       <div className="flex items-center gap-2">
                         <span className="text-lg font-semibold text-white">
                           Size: {currentWeekDetails.babySize}
                         </span>
                       </div>
-                      <div className="text-sm text-purple-100">
+                      <div className="text-sm text-white/90">
                         {currentWeekDetails.babyLength} • {currentWeekDetails.weight}
                       </div>
                     </div>
@@ -411,7 +403,7 @@ const PregnancyTracker = () => {
                   {currentTrimesterEvent && (
                     <div className="mb-6 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-200">
                       <div className="flex items-start gap-3">
-                        <div className="p-2 bg-emerald-100 rounded-lg">
+                        <div className="p-2 bg-emerald-100 rounded-lg flex-shrink-0">
                           <MapPin className="w-5 h-5 text-emerald-600" />
                         </div>
                         <div>
@@ -426,17 +418,17 @@ const PregnancyTracker = () => {
                   {/* Growth Stats */}
                   {currentGrowthData && (
                     <div className="grid grid-cols-3 gap-3 mb-6">
-                      <div className="bg-blue-50 rounded-lg p-3 text-center">
+                      <div className="bg-blue-50 rounded-lg p-3 text-center border border-blue-100">
                         <Ruler className="w-5 h-5 text-blue-600 mx-auto mb-2" />
                         <div className="text-lg font-bold text-gray-900">{currentGrowthData.babyLength}cm</div>
                         <div className="text-xs text-blue-600">Length</div>
                       </div>
-                      <div className="bg-purple-50 rounded-lg p-3 text-center">
+                      <div className="bg-purple-50 rounded-lg p-3 text-center border border-purple-100">
                         <Weight className="w-5 h-5 text-purple-600 mx-auto mb-2" />
                         <div className="text-lg font-bold text-gray-900">{currentGrowthData.weight}g</div>
                         <div className="text-xs text-purple-600">Weight</div>
                       </div>
-                      <div className="bg-pink-50 rounded-lg p-3 text-center">
+                      <div className="bg-pink-50 rounded-lg p-3 text-center border border-pink-100">
                         <Activity className="w-5 h-5 text-pink-600 mx-auto mb-2" />
                         <div className="text-lg font-bold text-gray-900">{currentGrowthData.heartRate}bpm</div>
                         <div className="text-xs text-pink-600">Heart Rate</div>
@@ -448,11 +440,6 @@ const PregnancyTracker = () => {
                   <Accordion.Root 
                     type="multiple" 
                     className="space-y-3"
-                    onValueChange={(values) => {
-                      values.forEach(value => {
-                        if (value) handleAccordionChange(value);
-                      });
-                    }}
                   >
                     {[
                       { 
@@ -485,25 +472,23 @@ const PregnancyTracker = () => {
                         <Accordion.Header>
                           <Accordion.Trigger className="flex items-center justify-between w-full p-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
                             <div className="flex items-center gap-3">
-                              <div className={`p-2 rounded-lg bg-${section.color}-100`}>
-                                <div className={`text-${section.color}-600`}>
+                              <div className={getColorClass(section.color, 'bg') + " p-2 rounded-lg"}>
+                                <div className={getColorClass(section.color, 'text')}>
                                   {section.icon}
                                 </div>
                               </div>
                               <span>{section.title}</span>
                             </div>
                             <ChevronRight 
-                              className={`w-4 h-4 transition-transform duration-200 ${
-                                isAccordionOpen[section.key as keyof AccordionState] ? 'rotate-90' : ''
-                              }`} 
+                              className="w-4 h-4 transition-transform duration-200 data-[state=open]:rotate-90" 
                             />
                           </Accordion.Trigger>
                         </Accordion.Header>
-                        <Accordion.Content className="px-4 pb-4">
+                        <Accordion.Content className="px-4 pb-4 animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden">
                           <ul className="space-y-2">
                             {section.items.map((item, index) => (
                               <li key={index} className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg">
-                                <div className={`w-2 h-2 rounded-full mt-2 bg-${section.color}-500`} />
+                                <div className={`w-2 h-2 rounded-full mt-2 ${section.color === 'purple' ? 'bg-purple-500' : section.color === 'blue' ? 'bg-blue-500' : 'bg-green-500'}`} />
                                 <span className="text-sm text-gray-700">{item}</span>
                               </li>
                             ))}
@@ -516,7 +501,7 @@ const PregnancyTracker = () => {
                   {/* Special Rural Tip */}
                   <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200">
                     <div className="flex items-start gap-3">
-                      <div className="p-2 bg-purple-100 rounded-lg">
+                      <div className="p-2 bg-purple-100 rounded-lg flex-shrink-0">
                         <Users className="w-5 h-5 text-purple-600" />
                       </div>
                       <div>
@@ -527,7 +512,7 @@ const PregnancyTracker = () => {
                   </div>
 
                   {/* Action Button */}
-                  <button className="w-full mt-6 px-4 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 group">
+                  <button className="w-full mt-6 px-4 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 group hover:from-purple-700 hover:to-pink-700">
                     <span>Get Week {selectedWeek} Insights</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>

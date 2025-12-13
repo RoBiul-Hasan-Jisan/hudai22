@@ -10,7 +10,7 @@ import BodyChanges from '@/components/BodyChanges';
 import QuickQuestions from '@/components/QuickQuestions';
 import ImageSection from '@/components/ImageSection';
 import RuralHealthInfo from '@/components/RuralHealthInfo';
-import Header from '@/components/Header';
+
 import Footer from '@/components/Footer';
 
 const Home = () => {
@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+    
       
       <main className="flex-grow bg-gradient-to-b from-purple-50/20 via-white to-blue-50/20">
         {/* Hero Section */}
@@ -53,14 +53,7 @@ const Home = () => {
           
           {/* Rural Health Information */}
           <section id="rural-health" className="scroll-mt-24">
-            <div className="mb-8 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Rural Health Support
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Specialized guidance for mothers in rural and remote areas
-              </p>
-            </div>
+          
             <RuralHealthInfo />
           </section>
           

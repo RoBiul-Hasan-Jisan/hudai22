@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import { Menu, X, User, LogIn, UserPlus, Bell, Search, Heart } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-
-// Import refactored components
-import AuthModal from './Header/AuthModal';
-import MobileMenu from './Header/MobileMenu';
-import Navigation from './Header/Navigation';
-import LanguageSelector from './Header/LanguageSelector';
-
-// Import utilities and types
-import { scrollToSection, validateLogin, validateRegister, getUserData, resetFormFields } from './Header/utils';
-import type { UserType, AuthMode, LoginCredentials, RegisterCredentials } from './Header/types';
+import { UserType, AuthMode, LoginCredentials, RegisterCredentials } from './types';
+import { NAV_ITEMS, LANGUAGE_LABELS } from './constants';
+import { scrollToSection, validateLogin, validateRegister, getUserData, resetFormFields } from './utils';
+import AuthModal from './AuthModal';
+import MobileMenu from './MobileMenu';
+import Navigation from './Navigation';
+import LanguageSelector from './LanguageSelector';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -108,9 +105,7 @@ const Header = () => {
   const changeLanguage = (lang: 'bn' | 'en' | 'syl') => {
     setLanguage(lang);
     setShowLanguageSelector(false);
-    // TODO: Implement language change logic here
-    // You'll need to update all text in the app based on the selected language
-    console.log(`Language changed to: ${lang}`);
+    // Implement language change logic here
   };
 
   const handleUserTypeChange = (type: UserType) => {
