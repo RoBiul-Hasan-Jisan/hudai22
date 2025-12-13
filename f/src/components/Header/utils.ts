@@ -1,4 +1,4 @@
-import { Language, UserType, AuthMode } from './types';
+import { UserType, AuthMode } from './types';
 
 export const scrollToSection = (sectionId: string, pathname: string, navigate: any) => {
   if (pathname !== '/') {
